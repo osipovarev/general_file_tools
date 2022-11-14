@@ -13,9 +13,11 @@ def read_into_dict(file):
     iso_dict = defaultdict(list)
     with open(file, 'r') as inf:
         for line in inf.readlines():
-           g = line.rstrip().split()[0]
-           t = line.rstrip().split()[1]
-           iso_dict[g].append(t)
+            elements = line.rstrip().split()
+            if len(elements) == 2:
+                g = elements[0]
+                t = elements[1]
+                iso_dict[g].append(t)
     return iso_dict
 
 
@@ -26,16 +28,18 @@ def main():
     parser.add_argument('-d2', '--dict2', type=str, help='dict file 2: gene \t transcript')
     args = parser.parse_args()
 
-	## Read both dict files
-	dict1 = read_into_dict(args.dict1)
-	dict2 = read_into_dict(args.dict2)
+    ## Read both dict files
+    d1 = read_into_dict(args.dict1)
+    d2 = read_into_dict(args.dict2)
 
     ## Print corresponding elements side by side
-    for g in dict1:
-    	if g in d2:
-    		print('{}\t{}\t{}'.format(g, d1[g], d2[g]))
-    	else:
-    		print('{}\t{}\t{}'.format(g, d1[g], 'Not_found'))
+    for g in d1:
+        d1_line = ','.join(d1[g])
+        if g in d2:
+            d2_line = ','.join(d2[g])
+            print('{}\t{}\t{}'.format(g, d1_line, d2_line)) 
+        else:
+            print('{}\t{}\t{}'.format(g, d2_line, 'Not_found'))
     		
 
 if __name__ == "__main__":
