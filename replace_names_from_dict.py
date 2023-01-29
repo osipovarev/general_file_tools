@@ -25,8 +25,10 @@ def read_anno_into_dict(anno, field, split_symbol, ignore):
             else:
                 all_fields = line.rstrip().split()
             if len(all_fields) < field - 1:
-                print('There is no field {} in the annotation! Abort'.format(field))
-                sys.exit(1)
+                #print('There is no field {} in the annotation! Abort'.format(field))
+                #sys.exit(1)
+                # output line as is
+                print(line.rstrip('\n')) 
             else:
                 id = all_fields[field - 1]
                 transc_info = line.rstrip()
