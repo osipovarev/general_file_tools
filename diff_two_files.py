@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #
 # This script takes two files with set of elements in format element \n \
-# and outputs what in not in the first set but not in the second; what is not in the second but in the first; \
+# and outputs what is in the first set but not in the second; what is not in the second but in the first; \
 # length of these differences between two sets.
 
 import argparse
