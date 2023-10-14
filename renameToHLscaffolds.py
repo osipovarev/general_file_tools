@@ -18,7 +18,7 @@ args = parser.parse_args()
 rename_table = {}
 with open(args.renamedict, 'r') as inf:
     for line in inf.readlines():
-        rename_table[line.split(',')[0]] = line.rstrip().split(',')[1]
+        rename_table[line.split(',')[0]] = line.rstrip('\n').split(',')[1]
 
 
 # read annotation file, replace requested column
