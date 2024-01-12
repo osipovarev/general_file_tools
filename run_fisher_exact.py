@@ -30,9 +30,9 @@ def fisher_exact_test(universe, category1, group1):
             ]
 
     # Perform Fisher exact test
-    odds_ratio, p_value = fisher_exact(table)
+    odds_ratio, p_value = fisher_exact(table, alternative='two-sided')
 
-    return p_value
+    return (len(c1_g1), len(c1_g2), len(c2_g1), len(c2_g2)), p_value
 
 
 def main():
@@ -41,6 +41,7 @@ def main():
     parser.add_argument('-u', '--universe', type=str, help='total list of elements aka universe')
     parser.add_argument('-l1', '--list1', type=str, help='list of elements with category 1')
     parser.add_argument('-l2', '--list2', type=str, help='list of elements with GROUP 1')
+    parser.add_argument('-t', '--table', action='store_true', help='specify the flag if you also want to output the numbers in the table')
     args = parser.parse_args()
 
     # Read sets from files
@@ -49,7 +50,11 @@ def main():
     group1 = read_file(args.list2)
 
     # Perform Fisher exact test
-    p_value = fisher_exact_test(universe, category1, group1)
+    (c1_g1, c1_g2, c2_g1, c2_g2), p_value = fisher_exact_test(universe, category1, group1)
+
+    # Output values in the table if requested
+    if args.table:
+        print((c1_g1, c1_g2, c2_g1, c2_g2))
 
     # Output the p-value
     print(f"P-Value from Fisher Exact Test: {p_value}")
