@@ -20,7 +20,7 @@ allElements_allFiles = []
 for file in file_list:
     with open(file, 'r') as inf:
         lines = inf.readlines()
-        elements_in_file = map(str.strip, lines)
+        elements_in_file = list(map(str.strip, lines))
         allElements_allFiles.append(elements_in_file)
 
 overlapping_elements = set(allElements_allFiles[0]).intersection(*allElements_allFiles)
