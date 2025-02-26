@@ -3,6 +3,11 @@
 import argparse
 from collections import defaultdict
 
+"""
+This script takes a table of values (ID \t value1 \t value 2 \t ...) and finds a minimum.
+It output the minimum and the column number with the best value. 
+Column=1 means the best value is found in the column next to the ID.
+"""
 
 __author__ = "Ekaterina Osipova, 2024."
 
@@ -34,9 +39,9 @@ def main():
                         v_min = v
                         n = i
             if args.max:
-                print('{}\t{}\t{}'.format(ID, -v_min, n))    
+                print('{}\t{}\t{}'.format(ID, -v_min, n+1))    
             else:
-                print('{}\t{}\t{}'.format(ID, v_min, n))
+                print('{}\t{}\t{}'.format(ID, v_min, n+1))
     		
 
 if __name__ == "__main__":
