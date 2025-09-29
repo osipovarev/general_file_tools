@@ -25,8 +25,8 @@ def maf_blocks_to_identity_windows(maf_file, window_size, step):
         if len(record) != 2:
             continue
         s1, s2, src1, src2, start1, start2 = get_sequences_from_maf_record(record)
-        # For simplicity, assume src1 = chrom
-        chrom = src1.split('.')[0] if '.' in src1 else src1
+        
+        chrom = src1
         chrom_len = max(len(s1), len(s2))  # conservative length
         seq1_pos, seq2_pos = start1, start2
         
